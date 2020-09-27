@@ -1,5 +1,6 @@
 import os
 import csv
+import statistics
 
 pybank_csv = os.path.join('.','Resources','budget_data.csv')
 
@@ -33,6 +34,10 @@ with open(pybank_csv, 'r') as budgetreader:
     for i in range(len(pandl)-1):
         profit_change.append(pandl[i+1]-pandl[i])
 
+#Calculate the average change
+Average = statistics.mean(profit_change)
+rounded_average = round(Average, 2)
+
 #Total revenue for all months
 sum_pandl = sum(pandl)  
 
@@ -53,6 +58,7 @@ print("Financial Analysis")
 print("----------------------")
 print(f"Total Months: {total_month}")
 print(f"Total Amount: ${sum_pandl}")
+print(f"Average Change: ${rounded_average}")
 print(f"Greatest Increase in Profit: {monthUP} ${Increase}")
 print(f"Greatest Decrease in Profit: {monthDOWN} ${Decrease}")
 
@@ -63,6 +69,8 @@ Analysis.write("\n")
 Analysis.write("----------------------")
 Analysis.write("\n")
 Analysis.write(f"Total Months: {total_month}")
+Analysis.write("\n")
+Analysis.write(f"Average Change: ${rounded_average}")
 Analysis.write("\n")
 Analysis.write(f"Total Amount: ${sum_pandl}")
 Analysis.write("\n")
